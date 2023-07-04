@@ -1,0 +1,106 @@
+﻿@using MvcCv.Models.Entity
+@model List<TblSkill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{string colour = "";}
+@{string labelcolour = "";}
+
+<!DOCTYPE html>
+<html>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Yetenek Listesi</h3>
+                            </div>
+                            <div class="card-body">
+                                <a href="/Skill/SkillAdd/" class="btn btn-outline-primary">Yeni Yetenek Ekle</a>
+                                <br />
+                                <br />
+                                <table class="table table-bordered">
+                                    <thead>
+
+
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Yetenek</th>
+                                            <th>Derece</th>
+                                            <th style="width: 40px">Oran</th>
+                                            <th>Düzenle</th>
+                                            <th>Sil</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.Ratio >= 0 && item.Ratio <= 50)
+                                            {
+                                                colour = "progress-bar bg-danger";
+                                                labelcolour = "badge bg-danger";
+                                            }
+
+                                            if (item.Ratio >= 51 && item.Ratio <= 70)
+                                            {
+                                                colour = "progress-bar bg-warning";
+                                                labelcolour = "badge bg-warning";
+                                            }
+
+                                            if (item.Ratio >= 71 && item.Ratio <= 84)
+                                            {
+                                                colour = "progress-bar bg-primary";
+                                                labelcolour = "badge bg-primary";
+                                            }
+
+                                            if (item.Ratio >= 85 && item.Ratio <= 100)
+                                            {
+                                                colour = "progress-bar bg-success";
+                                                labelcolour = "badge bg-success";
+                                            }
+
+                                            <tr>
+                                                <td>@item.ID</td>
+                                                <td>@item.Skill</td>
+
+                                                <td>
+                                                    <div class="progress progress-xs">
+                                                        <div class="@colour" style="width: @item.Ratio%"></div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="@labelcolour">@item.Ratio%</span></td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm" href="/Skill/SkillUpdate/@item.ID">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Düzenle
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger btn-sm" href="/Skill/SkillDelete/@item.ID">
+                                                        <i class="fas fa-trash"></i>
+                                                     Sil
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                    }
+                                    </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
