@@ -23,6 +23,12 @@ namespace MvcCv.Controllers
             return PartialView(values);
         }
 
+        public PartialViewResult _SocialMediaPartial()
+        {
+            var values = db.TblSocialMedia.Where(x=>x.Durum==true).ToList();
+            return PartialView(values);
+        }
+
         public PartialViewResult _EducationPartial()
         {
             var values=db.TblEducation.ToList();

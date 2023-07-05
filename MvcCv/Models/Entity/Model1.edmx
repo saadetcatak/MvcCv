@@ -13,6 +13,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" />
           <Property Name="Adress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Image" Type="nvarchar" MaxLength="100" />
@@ -71,7 +72,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Description1" Type="varchar" MaxLength="100" />
-          <Property Name="Description2" Type="varchar" MaxLength="100" />
+          <Property Name="Description2" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="TblSkill">
           <Key>
@@ -80,6 +81,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Skill" Type="nvarchar" MaxLength="100" />
           <Property Name="Ratio" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TblSocialMedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Link" Type="varchar" MaxLength="50" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
         </EntityType>
         <EntityContainer Name="DbCvModelStoreContainer">
           <EntitySet Name="TblAbout" EntityType="Self.TblAbout" Schema="dbo" store:Type="Tables" />
@@ -90,6 +101,7 @@
           <EntitySet Name="TblExperience" EntityType="Self.TblExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblInterest" EntityType="Self.TblInterest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblSkill" EntityType="Self.TblSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblSocialMedia" EntityType="Self.TblSocialMedia" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -106,6 +118,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TblAdmin">
           <Key>
@@ -161,7 +174,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Description2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TblSkill">
           <Key>
@@ -180,7 +193,18 @@
           <EntitySet Name="TblExperience" EntityType="Self.TblExperience" />
           <EntitySet Name="TblInterest" EntityType="Self.TblInterest" />
           <EntitySet Name="TblSkill" EntityType="Self.TblSkill" />
+          <EntitySet Name="TblSocialMedia" EntityType="DbCvModel.TblSocialMedia" />
         </EntityContainer>
+        <EntityType Name="TblSocialMedia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -190,6 +214,7 @@
           <EntitySetMapping Name="TblAbout">
             <EntityTypeMapping TypeName="DbCvModel.TblAbout">
               <MappingFragment StoreEntitySet="TblAbout">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -268,6 +293,17 @@
                 <ScalarProperty Name="Ratio" ColumnName="Ratio" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Skill" ColumnName="Skill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblSocialMedia">
+            <EntityTypeMapping TypeName="DbCvModel.TblSocialMedia">
+              <MappingFragment StoreEntitySet="TblSocialMedia">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

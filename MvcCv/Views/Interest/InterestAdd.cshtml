@@ -1,0 +1,23 @@
+﻿@model MvcCv.Models.Entity.TblInterest
+@{
+    ViewBag.Title = "InterestUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h4>Yeni İlgi Alanı Ekleme Sayfası</h4>
+<br />
+
+
+<form method="post">
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.Description1, new { @class = "form-control" })
+    <br />
+    @Html.Label("Açıklama")
+    @Html.TextAreaFor(x => x.Description2, new { @class = "form-control" })
+    <br />
+
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+
+
+</form>

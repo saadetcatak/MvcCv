@@ -22,6 +22,7 @@ namespace MvcCv.Controllers
         public ActionResult CertificateGet(int id) 
         { 
             var values=repo.Find(x=>x.ID==id);
+            ViewBag.d = id;
             return View(values);
         }
         [HttpPost]
@@ -31,6 +32,26 @@ namespace MvcCv.Controllers
             values.Description = t.Description;
             values.Date=t.Date;
             repo.TUpdate(values);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult NewCertificate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewCertificate(TblCertificate p)
+        {
+            repo.TAdd(p);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteCertificate(int id) 
+        {
+            var values=repo.Find(x=>x.ID==id);
+            repo.TDelete(values);
             return RedirectToAction("Index");
         }
     }
