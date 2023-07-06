@@ -54,7 +54,7 @@ namespace MvcCv.Controllers
             tbl.Description=p.Description;
             experienceRepository.TUpdate(tbl);
             return RedirectToAction("Index");
-            return View(tbl);
+            
         }
     }
 }

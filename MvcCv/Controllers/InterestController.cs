@@ -28,7 +28,7 @@ namespace MvcCv.Controllers
 
         public ActionResult InterestUpdate(TblInterest p)
         {
-            var values = repo.Find(x => x.ID ==p.ID);
+            var values = repo.Find(x => x.ID ==3);
             values.Description1 = p.Description1;
             values.Description2 = p.Description2;
             repo.TUpdate(values);

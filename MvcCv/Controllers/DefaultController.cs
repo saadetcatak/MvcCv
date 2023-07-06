@@ -8,6 +8,7 @@ using MvcCv.Models.Entity;
 
 namespace MvcCv.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
         DbCvEntities db=new DbCvEntities(); 

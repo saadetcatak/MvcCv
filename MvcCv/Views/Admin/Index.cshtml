@@ -1,0 +1,46 @@
+﻿@using MvcCv.Models.Entity
+@model List<TblAdmin>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count=0;
+}
+
+<br />
+
+<h4>Admin İşlemleri</h4>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Kullanıcı Adı</th>
+        <th>Düzenle</th>
+        <th>Kaldır</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.UserName</td>
+            <td>
+                <a class="btn btn-info btn-sm" href="/Admin/AdminUpdate/@item.ID">
+                    <i class="fas fa-pencil-alt"></i>
+                    Düzenle
+                </a>
+            </td>
+
+
+            <td>
+                <a class="btn btn-danger btn-sm" href="/Admin/AdminDelete/@item.ID">
+                    <i class="fas fa-trash"></i>
+                   Sil
+                </a>
+            </td>
+
+        </tr>
+    }
+</table>
+<a href="/Admin/AdminAdd/" class="btn btn-outline-primary">Yeni Kullanıcı Ekle</a>
+
